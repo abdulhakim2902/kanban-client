@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+/* Nav Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(14, 14, 46);
+    color: #fff;
+    font-weight: bold;
+    height: 55px;
+}
+
+.nav-title {
+    margin-left: 20px;
+}
+
+.nav-user {
+    display: flex;
+    margin-right: 20px;
+    width: 165px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-user:hover {
+    cursor: pointer;
+}
+
+.nav-title:hover {
+    cursor: pointer;
+}
+
+/* Kanban Board */
+.container {
+    display: flex;
+    height: 100vh;
+    width: 1500px;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+/* Container */
+.category {
+    width: 24%;
+    background-color: rgb(242, 242, 242);
+}
+
+h5 {
+    margin: 0;
+    padding: 15px;
+    background-color: rgb(1, 1, 58);
+    color: #fff
+}
+
+.cards {
+    margin-left: 18px;
+    margin-top: 5px;
+    overflow: scroll;
+    height: 500px;
+}
+
+.category:hover {
+    box-shadow: 1px 1px 8px 3px #616770;
+}
+
+.add-card {
+    background-color: rgb(213, 213, 213);
+    height: 50px;
+    padding: 17px;
+    color: grey;
+}
+
+.add-card:hover {
+    color: black;
+    cursor: pointer;
+}
+
+/* Cards */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-right: 20px;
+    word-wrap: break-word;
+}
+
+.card-body:hover {
+    box-shadow: 1px 1px 8px 1px #bababa;
+}
+
+/* Card Body */
+.card-info {
+    margin-top: 20px;
+}
+
+.card-info p {
+    font-size: 10px;
+    color: rgb(141, 141, 141)
+}
