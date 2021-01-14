@@ -1,0 +1,66 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(14, 14, 46);
+    color: #fff;
+    font-weight: bold;
+    height: 55px;
+    width: 100%;
+}
+
+.nav-title {
+    margin-left: 15px;
+}
+
+.nav-user {
+    display: flex;
+    margin-right: 20px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.user-name {
+    margin-right: 15px;
+}
+
+.nav-user:hover {
+    cursor: pointer;
+}
+
+.nav-title:hover {
+    cursor: pointer;
+}
+
+.add-btn {
+    color: rgb(136, 136, 136); 
+    background-color: rgb(213, 213, 213);
+}
+
+.show-add-btn:hover {
+    color: black;
+    cursor: pointer;
+
+}
+
+.category-header {
+    color: white; 
+    font-size: 20px;
+}
+
+#pencil, #trash, .previous, .next{
+    opacity: 0.5
+}
+
+#pencil:hover, #trash:hover, .next:hover, .previous:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+#category {
+    height: 750px;
+}
+
+.card-color {
+    background-color: rgb(255, 236, 209);
+}
