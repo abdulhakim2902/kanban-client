@@ -58,11 +58,13 @@ export default {
         },
         authenticate() {
             if (localStorage.access_token) {
+                this.fetchTasks();
                 this.name = localStorage.name;
                 this.setIsLoggedIn(true);
-                this.fetchTasks();
+
             } else {
                 this.setIsLoggedIn(false);
+                // this.fetchTasks();
                 this.name = ''        
             }
         },

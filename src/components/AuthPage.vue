@@ -9,6 +9,8 @@
             :class="{'btn-dark': currentForm === 'register'}"
             @click.prevent="changeForm('register')"
             class="btn">Registration</button>
+
+
             
         <login-form 
             v-if="currentForm === 'login'"
@@ -43,7 +45,7 @@ export default {
         },
         getName(payload) {
             this.$emit('getName', payload)
-        }
+        },
     },
     components: {
         LoginForm,
