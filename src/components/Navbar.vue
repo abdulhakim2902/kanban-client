@@ -9,7 +9,7 @@
             v-if="isLoggedIn === true">
 
             <div class="user-name">
-                <span> {{ userName }} </span></div>
+                <span> {{ name }} </span></div>
 
             <div 
                 class="user-img">
@@ -24,19 +24,17 @@
 export default {
     data() {
         return {
-            userName: ''
+            
         }
     },
     methods: {
         logout() {
             localStorage.clear();
             this.$emit('successLoggedOut', false)
-        },
-        getName() {
-            this.userName = localStorage.name
+            this.$emit('clearName')
         }
     },
-    props: ['isLoggedIn']
+    props: ['isLoggedIn', 'name']
 }
 </script>
 

@@ -12,11 +12,13 @@
             
         <login-form 
             v-if="currentForm === 'login'"
-            @successLoggedIn="successLoggedIn"></login-form>
+            @successLoggedIn="successLoggedIn"
+            @getName="getName"></login-form>
 
         <register-form 
             v-else
-            @successLoggedIn="successLoggedIn"></register-form>
+            @successLoggedIn="successLoggedIn"
+            @getName="getName"></register-form>
             
     </div>
 </template>
@@ -38,6 +40,9 @@ export default {
         },
         successLoggedIn() {
             this.$emit('successLoggedIn')
+        },
+        getName(payload) {
+            this.$emit('getName', payload)
         }
     },
     components: {

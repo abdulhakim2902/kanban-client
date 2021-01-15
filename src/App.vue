@@ -1,12 +1,15 @@
 <template>
     <div>
         <navbar 
+            :name="name"
             :isLoggedIn="isLoggedIn"
-            @successLoggedOut="setIsLoggedIn(false)"></navbar>
+            @successLoggedOut="setIsLoggedIn(false)"
+            @clearName="clearName"></navbar>
 
         <auth-page 
             v-if="isLoggedIn === false"
-            @successLoggedIn="setIsLoggedIn(true)"></auth-page>
+            @successLoggedIn="setIsLoggedIn(true)"
+            @getName="getName"></auth-page>
 
         <home-page 
             v-else
@@ -37,7 +40,8 @@ export default {
                 todo: [],
                 ongoing: [],
                 done: []
-            }
+            },
+            name: localStorage.name
         }
     },
     components: {
@@ -46,12 +50,20 @@ export default {
         HomePage
     },
     methods: {
+        clearName() {
+            this.name = ''
+        },
+        getName(payload) {
+            this.name = payload;
+        },
         authenticate() {
             if (localStorage.access_token) {
+                this.name = localStorage.name;
                 this.setIsLoggedIn(true);
                 this.fetchTasks();
             } else {
-                this.setIsLoggedIn(false);           
+                this.setIsLoggedIn(false);
+                this.name = ''        
             }
         },
         setIsLoggedIn(param) {

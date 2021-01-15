@@ -8,7 +8,7 @@
             <div class="card-icon mt-2">
                 <span v-if="task.category === 'backlog'"></span>
                 <i class="previous fas fa-arrow-circle-left"
-                   @click.prevent="editCategory( task, 'prev' )" 
+                   @click.prevent="editCategoryConfirmation( task, 'prev' )" 
                    v-else></i>
 
                 <i id="pencil" 
@@ -21,7 +21,7 @@
 
                 <span v-if="task.category === 'done'"></span>
                 <i class="next fas fa-arrow-circle-right"
-                   @click.prevent="editCategory( task, 'next' )" 
+                   @click.prevent="editCategoryConfirmation( task, 'next' )" 
                    v-else></i>
             </div>
         </div>
@@ -153,39 +153,58 @@ export default {
                 })
             }
         },
-        editCategory(task, state) {
-            let category = task.category;
-
-            if (state === 'prev') {
-                switch(category) {
-                    case 'todo':
-                        category = 'backlog'
-                    break;
-
-                    case 'ongoing':
-                        category = 'todo'
-                    break;
-
-                    case 'done':
-                        category = 'ongoing'
-                    break;
+        editCategoryConfirmation(task, state) {
+            axios({
+                method: 'GET',
+                url: `${this.server}/tasks/${task.id}`,
+                headers: {
+                    access_token: localStorage.access_token
                 }
-            } else if (state === 'next') {
-                switch(category) {
-                    case 'backlog':
-                        category = 'todo'
-                    break;
+            })
+            .then(({data}) => {
+                let category = task.category;
 
-                    case 'todo':
-                        category = 'ongoing'
-                    break;
+                if (state === 'prev') {
+                    switch(category) {
+                        case 'todo':
+                            category = 'backlog'
+                        break;
 
-                    case 'ongoing':
-                        category = 'done'
-                    break;
+                        case 'ongoing':
+                            category = 'todo'
+                        break;
+
+                        case 'done':
+                            category = 'ongoing'
+                        break;
+                    }
+                } else if (state === 'next') {
+                    switch(category) {
+                        case 'backlog':
+                            category = 'todo'
+                        break;
+
+                        case 'todo':
+                            category = 'ongoing'
+                        break;
+
+                        case 'ongoing':
+                            category = 'done'
+                        break;
+                    }
                 }
-            }
 
+                this.updatedCategory(data, category)
+            })
+            .catch(err => {
+                console.log(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No access!'
+                })
+            })
+        },
+        updatedCategory(task, category) {
             axios({
                 method: 'PATCH',
                 url: `${this.server}/tasks/category/${task.id}`,
@@ -209,7 +228,7 @@ export default {
             })
             .catch(err => {
                 console.log(err);
-            })
+            })        
         }
     },
     props: ['task']

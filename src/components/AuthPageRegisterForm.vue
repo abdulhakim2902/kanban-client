@@ -70,7 +70,9 @@ export default {
             })
             .then(({ data }) => {
                 localStorage.access_token = data.access_token;
+                localStorage.name = data.name
                 this.$emit('successLoggedIn')
+                this.$emit('getName', localStorage.name)
 
                 Swal.fire({
                     title: `Registered successfully!`,
@@ -85,6 +87,9 @@ export default {
                     icon: 'error',
                     confirmButtonText: 'Okay'
                 })
+            })
+            .then(() => {
+                this.user = {}
             })
         }
     }
