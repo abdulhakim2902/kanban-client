@@ -35,7 +35,7 @@ export default {
     data() {
         return {
             isLoggedIn: false,
-            server: 'http://localhost:3000',
+            server: 'https://safe-savannah-96382.herokuapp.com',
             tasks: {
                 backlog: [],
                 todo: [],

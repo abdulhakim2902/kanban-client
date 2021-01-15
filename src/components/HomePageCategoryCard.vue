@@ -37,7 +37,7 @@ export default {
     name: 'TaskCard',
     data() {
         return {
-            server: 'http://localhost:3000',
+            server: 'https://safe-savannah-96382.herokuapp.com',
         }
     },
     methods: {
