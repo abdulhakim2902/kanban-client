@@ -120,12 +120,21 @@ export default {
                 })
             })
             .catch(err => {
-                Swal.fire({
-                    title: 'Error!',
-                    text: `Name, email, and password must be filled`,
-                    icon: 'error',
-                    confirmButtonText: 'Okay'
-                })
+                if (err.response.data.message === 'Email already in use') {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: err.response.data.message,
+                        icon: 'error',
+                        confirmButtonText: 'Okay'
+                    })
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: `Name, email, and password must be filled`,
+                        icon: 'error',
+                        confirmButtonText: 'Okay'
+                    })
+                } 
             })
             .then(() => {
                 this.user = {}

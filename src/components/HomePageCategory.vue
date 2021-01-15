@@ -13,8 +13,8 @@
                 @taskCategoryUpdated="taskCategoryUpdated">    
             </task-card> 
         </div>
-
-        <div class="add-btn p-3">
+        
+        <div v-if="categoryName === 'backlog'" class="add-btn p-3">
             <div class="show-add-btn" @click.prevent="addNewTask(categoryName)">
                 <i class="fas fa-plus"></i>
                 <span>Add Task</span>

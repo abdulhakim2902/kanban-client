@@ -6,10 +6,8 @@
             <h6 class="card-subtitle text-muted">{{ task.updatedAt }}</h6>
             <!-- <h6>{{ task.category }}</h6> -->
             <div class="card-icon mt-2">
-                <span v-if="task.category === 'backlog'"></span>
-                <i class="previous fas fa-arrow-circle-left"
-                   @click.prevent="editCategoryConfirmation( task, 'prev' )" 
-                   v-else></i>
+                <i v-if="task.category !== 'backlog'" class="previous fas fa-arrow-circle-left"
+                   @click.prevent="editCategoryConfirmation( task, 'prev' )"></i>
 
                 <i id="pencil" 
                     class="fas fa-pencil-alt" 
@@ -19,10 +17,10 @@
                     class="fas fa-trash"
                     @click.prevent="deleteTaskConfirmation( task.id )"></i>
 
-                <span v-if="task.category === 'done'"></span>
                 <i class="next fas fa-arrow-circle-right"
+                   v-if="task.category !== 'done'"
                    @click.prevent="editCategoryConfirmation( task, 'next' )" 
-                   v-else></i>
+                   ></i>
             </div>
         </div>
     </div>    
