@@ -51,8 +51,14 @@ export default {
         HomePage
     },
     watch: {
-    isLoggedIn: function(val) {
+        isLoggedIn: function(val) {
             if (val) {
+                this.tasks = {
+                    backlog: [],
+                    todo: [],
+                    ongoing: [],
+                    done: []
+                }
                 this.fetchTasks();
             }
         }
@@ -69,7 +75,7 @@ export default {
         },
         authenticate() {
             if (localStorage.access_token) {
-                this.fetchTasks();
+                // this.fetchTasks();
                 this.name = localStorage.name;
                 this.setIsLoggedIn(true);
 

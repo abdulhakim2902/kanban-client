@@ -38,6 +38,7 @@ export default {
     data() {
         return {
             server: 'https://safe-savannah-96382.herokuapp.com',
+            name: localStorage.name
         }
     },
     methods: {
