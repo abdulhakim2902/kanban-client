@@ -45,7 +45,7 @@ export default {
         },
         getName(payload) {
             this.$emit('getName', payload)
-        },
+        }
     },
     components: {
         LoginForm,

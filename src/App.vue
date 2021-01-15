@@ -9,7 +9,8 @@
         <auth-page 
             v-if="isLoggedIn === false"
             @successLoggedIn="setIsLoggedIn(true)"
-            @getName="getName"></auth-page>
+            @getName="getName"
+            @getAccessToken="getAccessToken"></auth-page>
 
         <home-page 
             v-else
@@ -41,7 +42,7 @@ export default {
                 ongoing: [],
                 done: []
             },
-            name: localStorage.name
+            name: localStorage.name,
         }
     },
     components: {
@@ -49,12 +50,22 @@ export default {
         AuthPage,
         HomePage
     },
+    watch: {
+    isLoggedIn: function(val) {
+            if (val) {
+                this.fetchTasks();
+            }
+        }
+    },
     methods: {
         clearName() {
             this.name = ''
         },
         getName(payload) {
             this.name = payload;
+        },
+        getAccessToken(payload) {
+            this.access_token = payload
         },
         authenticate() {
             if (localStorage.access_token) {
@@ -64,7 +75,6 @@ export default {
 
             } else {
                 this.setIsLoggedIn(false);
-                // this.fetchTasks();
                 this.name = ''        
             }
         },
