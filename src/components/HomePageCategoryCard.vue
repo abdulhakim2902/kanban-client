@@ -4,23 +4,27 @@
             <h5 class="card-title mb-5">{{ task.description }}</h5>
             <h6 class="card-subtitle text-muted mb-1">By: {{ task.name }}</h6>
             <h6 class="card-subtitle text-muted">{{ task.updatedAt }}</h6>
-            <!-- <h6>{{ task.category }}</h6> -->
+            
             <div class="card-icon mt-2">
-                <i v-if="task.category !== 'backlog'" class="previous fas fa-arrow-circle-left"
-                   @click.prevent="editCategoryConfirmation( task, 'prev' )"></i>
+                <i class="previous fas fa-arrow-circle-left"
+                    v-if="task.category !== 'backlog'" 
+                    @click.prevent="editCategoryConfirmation( task, 'prev' )">
+                </i>
 
                 <i id="pencil" 
                     class="fas fa-pencil-alt" 
-                    @click.prevent="editDescriptionConfirmation( task.id )"></i>
+                    @click.prevent="editDescriptionConfirmation( task.id )">
+                </i>
 
                 <i id="trash"
                     class="fas fa-trash"
-                    @click.prevent="deleteTaskConfirmation( task.id )"></i>
+                    @click.prevent="deleteTaskConfirmation( task.id )">
+                </i>
 
                 <i class="next fas fa-arrow-circle-right"
                    v-if="task.category !== 'done'"
-                   @click.prevent="editCategoryConfirmation( task, 'next' )" 
-                   ></i>
+                   @click.prevent="editCategoryConfirmation( task, 'next' )" >
+                </i>
             </div>
         </div>
     </div>    

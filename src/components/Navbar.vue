@@ -1,22 +1,23 @@
 <template>
     <nav class="container-fluid">
         <div class="nav-title">
-            <span>KANBAN</span></div>
+            <span>KANBAN</span>
+        </div>
     
-        <div 
-            class="nav-user" 
-            @click.prevent="logout()" 
-            v-if="isLoggedIn === true">
+        <div class="nav-user" 
+            v-if="isLoggedIn === true"
+            @click.prevent="logout()">
 
             <div class="user-name">
-                <span> {{ name }} </span></div>
+                <span> {{ name }} </span>
+            </div>
 
-            <div 
-                class="user-img">
-                <img 
-                    src="../assets/img/user.png" 
+            <div class="user-img">
+                <img src="../assets/img/user.png" 
                     width="35" 
-                    height="35"></div></div>  
+                    height="35">
+            </div>
+        </div>  
     </nav>
 </template>
 
@@ -31,9 +32,8 @@ export default {
         logout() {
             localStorage.clear();
             this.$emit('successLoggedOut')
-            this.$emit('clearName')
-
-           this.signOut()
+            this.$emit('setName')
+            this.signOut()
         },
 
         signOut() {

@@ -3,6 +3,7 @@
         <div class="category-header bg-dark p-3">
             <span>{{ categoryName }}</span>
         </div>
+
         <div class="col-md-12 bg-light p-2 overflow-auto h-75">
             <task-card 
                 v-for="task in categoryData"
@@ -14,8 +15,12 @@
             </task-card> 
         </div>
         
-        <div v-if="categoryName === 'backlog'" class="add-btn p-3">
-            <div class="show-add-btn" @click.prevent="addNewTask(categoryName)">
+        <div class="add-btn p-3"
+            v-if="categoryName === 'backlog'">
+            
+            <div class="show-add-btn" 
+                @click.prevent="addNewTask(categoryName)">
+                
                 <i class="fas fa-plus"></i>
                 <span>Add Task</span>
             </div>

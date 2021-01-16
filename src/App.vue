@@ -4,13 +4,14 @@
             :name="name"
             :isLoggedIn="isLoggedIn"
             @successLoggedOut="setIsLoggedIn(false)"
-            @clearName="clearName"></navbar>
+            @setName="setName('')">
+        </navbar>
 
         <auth-page 
             v-if="isLoggedIn === false"
             @successLoggedIn="setIsLoggedIn(true)"
-            @getName="getName"
-            @getAccessToken="getAccessToken"></auth-page>
+            @setName="setName">
+        </auth-page>
 
         <home-page 
             v-else
@@ -18,9 +19,8 @@
             @taskAdded="taskAdded"
             @taskUpdated="taskUpdated"
             @taskDeleted="taskDeleted"
-            @taskCategoryUpdated="taskCategoryUpdated"
-            ></home-page>
-    
+            @taskCategoryUpdated="taskCategoryUpdated">
+        </home-page>
     </div>
 </template>
 
@@ -52,22 +52,11 @@ export default {
     },
     watch: {
         isLoggedIn: function(val) {
-            if (val) {
-                this.tasks = {
-                    backlog: [],
-                    todo: [],
-                    ongoing: [],
-                    done: []
-                }
-                this.fetchTasks();
-            }
+            if (val) this.fetchTasks();
         }
     },
     methods: {
-        clearName() {
-            this.name = ''
-        },
-        getName(payload) {
+        setName(payload) {
             this.name = payload;
         },
         getAccessToken(payload) {
@@ -75,13 +64,11 @@ export default {
         },
         authenticate() {
             if (localStorage.access_token) {
-                // this.fetchTasks();
-                this.name = localStorage.name;
                 this.setIsLoggedIn(true);
-
+                this.name = localStorage.name;
             } else {
                 this.setIsLoggedIn(false);
-                this.name = ''        
+                this.setName('');
             }
         },
         setIsLoggedIn(param) {

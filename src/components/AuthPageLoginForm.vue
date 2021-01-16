@@ -3,25 +3,28 @@
         <form>
             <div class="form-group mb-3 mt-3">
                 <label>Email address: </label><br>
-                <input 
-                    class="form-control" 
-                    v-model="user.email" 
+                <input class="form-control"  
                     type="text" 
-                    placeholder="eg: johndoe@mail.com">
+                    placeholder="johndoe@mail.com"
+                    v-model="user.email">
 
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small></div>
+                <small id="emailHelp" class="form-text text-muted">
+                    We'll never share your email with anyone else.
+                </small>
+            </div>
 
             <div class="form-group mb-4">
                 <label>Password: </label><br>
-                <input 
-                    class="form-control" 
-                    v-model="user.password" 
+                <input class="form-control" 
                     type="password" 
-                    placeholder="min password length 6"></div>
+                    placeholder="******"
+                    v-model="user.password">
+                </div>
 
-            <button 
-                class="btn btn-primary w-100"
-                @click.prevent="login()">Login</button>
+            <button class="btn btn-primary w-100"
+                @click.prevent="login()">
+                Login
+            </button>
         
         </form>  
     </div>
@@ -54,7 +57,7 @@ export default {
                 localStorage.access_token = data.access_token;
                 localStorage.name = data.name;
                 this.$emit('successLoggedIn')
-                this.$emit('getName', localStorage.name)
+                this.$emit('setName', localStorage.name)
 
                 Swal.fire({
                     title: `Login successful!`,
@@ -63,7 +66,6 @@ export default {
                 })
             })
             .catch(err => {
-                this.err = err
                 Swal.fire({
                     title: 'Error!',
                     text: `Invalid email / password`,

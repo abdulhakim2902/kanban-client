@@ -1,27 +1,28 @@
 <template>
     <div class="auth-page mx-auto w-25 border p-4 rounded mt-5">
-        <button 
+        <button class="btn"
             :class="{'btn-dark': currentForm === 'login'}"
-            @click.prevent="changeForm('login')"
-            class="btn">Login</button>
+            @click.prevent="changeForm('login')">
+            Login
+        </button>
         
-        <button 
+        <button class="btn"
             :class="{'btn-dark': currentForm === 'register'}"
-            @click.prevent="changeForm('register')"
-            class="btn">Registration</button>
-
-
+            @click.prevent="changeForm('register')">
+            Registration
+        </button>
             
         <login-form 
             v-if="currentForm === 'login'"
             @successLoggedIn="successLoggedIn"
-            @getName="getName"></login-form>
+            @setName="setName">
+        </login-form>
 
         <register-form 
             v-else
             @successLoggedIn="successLoggedIn"
-            @getName="getName"></register-form>
-            
+            @setName="setName">
+        </register-form>    
     </div>
 </template>
 
@@ -43,8 +44,8 @@ export default {
         successLoggedIn() {
             this.$emit('successLoggedIn')
         },
-        getName(payload) {
-            this.$emit('getName', payload)
+        setName(payload) {
+            this.$emit('setName', payload)
         }
     },
     components: {

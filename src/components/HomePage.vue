@@ -18,9 +18,7 @@ import CategoryContainer from './HomePageCategory';
 export default {
     name: 'HomePage',
     data() {
-        return {
-          
-        }
+        return {}
     },
     methods: {
       taskCategoryUpdated(payload){

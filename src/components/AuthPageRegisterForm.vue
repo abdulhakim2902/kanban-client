@@ -71,7 +71,7 @@ export default {
                 localStorage.access_token = data.access_token;
                 localStorage.name = data.name;
                 this.$emit('successLoggedIn')
-                this.$emit('getName', localStorage.name)
+                this.$emit('setName', localStorage.name)
 
                 Swal.fire({
                     title: `Sign in successfully!`,
